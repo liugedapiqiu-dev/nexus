@@ -1,0 +1,49 @@
+{
+  "name": "vectorbrain-memory-search",
+  "description": "【核心记忆检索技能】第一优先级检索 VectorBrain 知识记忆。当遇到以下情况时，**必须主动调用**此技能：(1) 健豪询问过去的经验、项目、习惯、历史决策；(2) 用户问你还记不记得某事；(3) 询问身份、背景、来源；(4) 意识到缺乏背景知识。**检索协议：知识记忆 → 今日记忆文件 → 情景记忆**",
+  "version": "1.0.1",
+  "author": "[YOUR_AI_NAME] 🧠",
+  "created_at": "2026-03-08T03:33:00+08:00",
+  "updated_at": "2026-03-10T13:30:00+08:00",
+  "memory_protocol": {
+    "priority_order": [
+      "knowledge_memory.db (第一优先级)",
+      "~/.openclaw/workspace/memory/YYYY-MM-DD.md (第二优先级)",
+      "episodic_memory.db (第三优先级)"
+    ],
+    "checklist": [
+      "先查知识记忆",
+      "再查今日记忆文件",
+      "最后查情景记忆",
+      "避免重复检索"
+    ]
+  },
+  "action": {
+    "type": "shell",
+    "command": "python3 ~/.vectorbrain/connector/vector_search.py \"{query}\"",
+    "timeout_seconds": 60,
+    "output_mode": "capture"
+  },
+  "parameters": {
+    "query": {
+      "type": "string",
+      "required": true,
+      "description": "用户的问题或查询文本，将用于向量检索"
+    }
+  },
+  "usage_examples": [
+    "用户问：\"上次那个备份的经验是什么？\" → 调用技能，query=\"备份经验\"",
+    "用户问：\"高尔夫毛巾质检标准是什么？\" → 调用技能，query=\"高尔夫毛巾质检\"",
+    "用户问：\"健豪平时有什么习惯？\" → 调用技能，query=\"健豪习惯\"",
+    "用户问：\"002599 股票什么价格？\" → 调用技能，query=\"股票 002599\"",
+    "用户问：\"你有两个老师吗\" → 调用技能，query=\"老师 两位\"",
+    "用户问：\"你忘记了 XXX 吗\" → 调用技能，query=\"XXX\""
+  ],
+  "notes": [
+    "这是意图驱动 (Function Calling)，不是关键词触发",
+    "LLM 会根据对话上下文自动判断是否需要调用此技能",
+    "技能返回 Top-3 记忆记录，包含匹配度和内容预览",
+    "使用时要自然吸收结果，不要告诉用户\"我正在搜索记忆\"",
+    "检索协议：知识记忆 → 今日记忆文件 → 情景记忆"
+  ]
+}

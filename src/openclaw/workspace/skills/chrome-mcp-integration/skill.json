@@ -1,0 +1,24 @@
+{
+  "name": "chrome-mcp-integration",
+  "description": "使用 hangwin/mcp-chrome + mcp-chrome-bridge 接入你日常正在使用的 Google Chrome，复用登录态进行浏览器控制与内容提取。",
+  "version": "1.0.0",
+  "triggers": {
+    "intent": [
+      "使用 Chrome MCP",
+      "连接谷歌浏览器 MCP",
+      "复用当前 Chrome 登录态",
+      "操控我正在用的 Chrome",
+      "chrome mcp"
+    ]
+  },
+  "entry": {
+    "type": "documentation",
+    "path": ".",
+    "main": "SKILL.md"
+  },
+  "examples": [
+    "接通 Chrome MCP，让[YOUR_AI_NAME]复用我当前 Chrome 的登录态",
+    "用 Chrome MCP 操控我现在打开的 Chrome",
+    "检查 Chrome MCP 连接状态"
+  ]
+}

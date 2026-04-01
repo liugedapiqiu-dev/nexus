@@ -1,0 +1,211 @@
+{
+  "schema_version": "0.1.0-draft",
+  "generated_at": "2026-03-21T23:10:00+08:00",
+  "purpose": "Repeatable acceptance baseline draft for first-wave backbone skills. Informational only; does not mutate runtime or registry lifecycle.",
+  "source_documents": [
+    "skills/SKILLS_INVENTORY.md",
+    "skills/SKILLS_INVENTORY.json",
+    "skills/skills.registry.json",
+    "skills/SKILLS_ACCEPTANCE.md"
+  ],
+  "acceptance_levels": {
+    "L1": "structure",
+    "L2": "runtime-smoke",
+    "L3": "contract-and-boundary"
+  },
+  "entries": [
+    {
+      "registry_id": "vectorbrain-memory-search",
+      "canonical_name": "vectorbrain-memory-search",
+      "source_path": "/home/user/.openclaw/skills/vectorbrain-memory-search",
+      "status_hint": "PASS-WITH-GAPS",
+      "depends_on": [
+        "python3",
+        "~/.vectorbrain/connector/vector_search.py",
+        "~/.vectorbrain/memory/knowledge_memory.db",
+        "faiss (optional)",
+        "ollama+bge-m3 (optional for vector path)"
+      ],
+      "checks": {
+        "L1": [
+          "SKILL.md exists",
+          "skill.json exists",
+          "skill.json parses",
+          "skill.json.action.command points to vector_search.py",
+          "memory_protocol.priority_order declared"
+        ],
+        "L2": [
+          "python3 ~/.vectorbrain/connector/vector_search.py \"测试 记忆\" exits without crash",
+          "output includes results, fallback notice, or explicit no-result message"
+        ],
+        "L3": [
+          "contract still declares knowledge -> daily file -> episodic protocol",
+          "real implementation must not silently claim full protocol if only knowledge path is executed"
+        ]
+      },
+      "known_gaps": [
+        "Declared full retrieval protocol is stronger than currently verified implementation",
+        "Current vector_search.py primarily verifies knowledge-memory search path"
+      ],
+      "failure_signals": [
+        "skill.json missing or unparsable",
+        "entry command path invalid",
+        "script crashes on smoke query",
+        "no fallback when faiss unavailable",
+        "protocol contract removed or contradicted"
+      ],
+      "rollback_target": "/home/user/.openclaw/skills/vectorbrain-memory-search",
+      "manual_checks": [
+        "Verify end-to-end execution order knowledge -> daily file -> episodic, not just documentation"
+      ]
+    },
+    {
+      "registry_id": "vectorbrain-connector",
+      "canonical_name": "vectorbrain-connector",
+      "source_path": "/home/user/.openclaw/skills/vectorbrain-connector",
+      "status_hint": "PASS-WITH-GAPS",
+      "depends_on": [
+        "python3",
+        "~/.vectorbrain/connector/",
+        "~/.vectorbrain/src/memory_manager.py",
+        "~/.vectorbrain/memory/",
+        "~/.vectorbrain/reflection/",
+        "~/.vectorbrain/tasks/",
+        "~/.vectorbrain/goals/"
+      ],
+      "checks": {
+        "L1": [
+          "SKILL.md exists",
+          "skill.json exists",
+          "entry.path points to ~/.vectorbrain/connector/",
+          "vector_search.py existence checked",
+          "memory_reader.py existence checked",
+          "reflection_writer.py existence checked",
+          "task_planner.py existence checked"
+        ],
+        "L2": [
+          "At least one real connector-facing script is callable (currently vector_search.py)",
+          "Dependency paths exist without requiring mutation"
+        ],
+        "L3": [
+          "Connector contract for read/write/plan/search must match real callable surface",
+          "Missing declared scripts must be treated as contract gap, not ignored"
+        ]
+      },
+      "known_gaps": [
+        "skill.json declares memory_reader.py/reflection_writer.py/task_planner.py but they were not found under ~/.vectorbrain/connector/",
+        "SKILL.md examples reference memory_manager.py as if it were a CLI, but current file behaves like a Python module/test entry"
+      ],
+      "failure_signals": [
+        "All declared entrypoints non-existent",
+        "Connector reduces to documentation-only contract",
+        "Critical dependency paths disappear",
+        "Migration changes path without rollback reference"
+      ],
+      "rollback_target": "/home/user/.openclaw/skills/vectorbrain-connector",
+      "manual_checks": [
+        "Decide whether to shrink contract or add missing scripts",
+        "Determine accepted minimal connector surface for promotion"
+      ]
+    },
+    {
+      "registry_id": "self-improvement",
+      "canonical_name": "self-improvement",
+      "source_path": "/home/user/.openclaw/skills/self-improvement",
+      "status_hint": "PASS-WITH-GAPS",
+      "depends_on": [
+        "skill.json",
+        "SKILL.md",
+        ".learnings/LEARNINGS.md",
+        ".learnings/ERRORS.md",
+        ".learnings/FEATURE_REQUESTS.md",
+        "scripts/activator.sh",
+        "scripts/error-detector.sh",
+        "scripts/extract-skill.sh"
+      ],
+      "checks": {
+        "L1": [
+          "All three learning log templates exist",
+          "All three helper scripts exist",
+          "skill.json entry paths match learning files"
+        ],
+        "L2": [
+          "activator.sh prints reminder",
+          "error-detector.sh can run without crash",
+          "extract-skill.sh --dry-run renders scaffold plan"
+        ],
+        "L3": [
+          "Promotion rules to AGENTS.md / TOOLS.md / SOUL.md remain documented",
+          "Template logs vs workspace runtime logs are explicitly distinguished"
+        ]
+      },
+      "known_gaps": [
+        "Skill-local .learnings directory and workspace-level .learnings usage can be confused without explicit operator guidance"
+      ],
+      "failure_signals": [
+        "Any core learning log missing",
+        "Logging format becomes unstable",
+        "All helper scripts unusable",
+        "Promotion rules removed",
+        "Runtime log target ambiguous and undocumented"
+      ],
+      "rollback_target": "/home/user/.openclaw/skills/self-improvement",
+      "manual_checks": [
+        "Confirm whether workspace .learnings is the authoritative runtime data plane"
+      ]
+    },
+    {
+      "registry_id": "startup-healthcheck",
+      "canonical_name": "startup-healthcheck",
+      "source_path": "/home/user/.openclaw/skills/startup-healthcheck",
+      "status_hint": "PASS-WITH-GAPS",
+      "depends_on": [
+        "python3",
+        "sqlite3 (Python stdlib)",
+        "pgrep",
+        "lsof",
+        "openclaw CLI",
+        "~/.openclaw/skills/startup-healthcheck/src/healthcheck.py"
+      ],
+      "checks": {
+        "L1": [
+          "SKILL.md exists",
+          "skill.json exists",
+          "README.md exists",
+          "src/healthcheck.py exists",
+          "entry metadata checked against real executable path"
+        ],
+        "L2": [
+          "python3 ~/.openclaw/skills/startup-healthcheck/src/healthcheck.py generates report text",
+          "stdout fallback exists if send fails",
+          "script stays read-mostly"
+        ],
+        "L3": [
+          "Healthcheck remains observability-oriented, not repair-oriented",
+          "Report destinations are explicit",
+          "Startup integration remains optional/controlled rather than silently modifying boot flow"
+        ]
+      },
+      "known_gaps": [
+        "skill.json entry.main references healthcheck.sh while real executable is src/healthcheck.py"
+      ],
+      "failure_signals": [
+        "No report generated",
+        "entry metadata and real path drift without documentation",
+        "send failure suppresses all report visibility",
+        "script mutates system state by default"
+      ],
+      "rollback_target": "/home/user/.openclaw/skills/startup-healthcheck",
+      "manual_checks": [
+        "Confirm whether startup hook integration is actually enabled in production usage"
+      ]
+    }
+  ],
+  "next_wave_candidates": [
+    "brain-health-monitor",
+    "memory-extraction-engine",
+    "auto-reflection-engine",
+    "auto-archive-system",
+    "knowledge-dedup"
+  ]
+}

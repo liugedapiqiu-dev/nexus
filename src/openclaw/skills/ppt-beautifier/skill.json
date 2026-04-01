@@ -1,0 +1,30 @@
+{
+  "name": "ppt-beautifier",
+  "version": "1.0.0",
+  "description": "PowerPoint PPT 美化和自动化处理技能",
+  "emoji": "📊",
+  "author": "OpenClaw",
+  "license": "MIT",
+  "tags": ["ppt", "powerpoint", "beautify", "automation", "office"],
+  "requires": {
+    "bins": ["python3"],
+    "python_packages": ["python-pptx", "pillow"]
+  },
+  "scripts": {
+    "beautify": "scripts/ppt_beautifier.py beautify",
+    "font": "scripts/ppt_beautifier.py font",
+    "color": "scripts/ppt_beautifier.py color",
+    "layout": "scripts/ppt_beautifier.py layout",
+    "template": "scripts/ppt_beautifier.py template",
+    "image": "scripts/ppt_beautifier.py image",
+    "batch": "scripts/ppt_beautifier.py batch",
+    "extract": "scripts/ppt_beautifier.py extract",
+    "export": "scripts/ppt_beautifier.py export"
+  },
+  "examples": [
+    "美化 PPT：python scripts/ppt_beautifier.py beautify input.pptx -o output.pptx",
+    "统一字体：python scripts/ppt_beautifier.py font file.pptx --font 'Microsoft YaHei' -s 18",
+    "应用配色：python scripts/ppt_beautifier.py color file.pptx --primary '#0066CC'",
+    "批量处理：python scripts/ppt_beautifier.py batch folder/ -o output/"
+  ]
+}

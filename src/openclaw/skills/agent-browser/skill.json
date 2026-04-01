@@ -1,0 +1,45 @@
+{
+  "name": "agent-browser",
+  "description": "Agent Browser - Rust 无头浏览器自动化 CLI",
+  "version": "1.0.0",
+  "author": "OpenClaw Community",
+  "updated": "2026-03-10",
+  "triggers": {
+    "intent": [
+      "打开网页",
+      "浏览网页",
+      "截图网页",
+      "点击页面元素",
+      "填写表单",
+      "网页自动化",
+      "抓取网页内容",
+      "浏览器操作"
+    ]
+  },
+  "entry": {
+    "type": "cli",
+    "command": "agent-browser",
+    "actions": [
+      "open",
+      "snapshot",
+      "screenshot",
+      "click",
+      "type",
+      "navigate",
+      "act"
+    ]
+  },
+  "capabilities": {
+    "navigation": "打开和导航到 URL",
+    "snapshot": "捕获页面结构和元素",
+    "screenshot": "页面截图",
+    "interaction": "点击、输入、悬停等操作",
+    "form_filling": "填写表单并提交"
+  },
+  "examples": [
+    "打开 https://github.com 并截图",
+    "访问这个网页并提取内容",
+    "点击页面上的登录按钮",
+    "在搜索框中输入关键词"
+  ]
+}

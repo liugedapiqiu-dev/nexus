@@ -1,0 +1,57 @@
+{
+  "name": "session-history-archiver",
+  "description": "会话历史自动归档系统 - 将会话 jsonl 文件可靠地归档到 episodic_memory.db",
+  "version": "1.0.0",
+  "author": "[YOUR_AI_NAME] 🧠",
+  "created_at": "2026-03-11T11:55:00+08:00",
+  "triggers": {
+    "intent": [
+      "归档会话",
+      "备份聊天记录",
+      "保存会话历史",
+      "同步会话到记忆"
+    ],
+    "auto": {
+      "hourly": true,
+      "on_session_end": true,
+      "description": "每小时自动运行，检测并归档新会话"
+    }
+  },
+  "entry": {
+    "type": "script",
+    "path": "~/.openclaw/skills/session-history-archiver/",
+    "main": "session_archiver.py",
+    "command": "python3 session_archiver.py"
+  },
+  "features": {
+    "idempotent": "基于文件哈希，避免重复归档",
+    "atomic": "使用数据库事务，保证数据完整性",
+    "fault_tolerant": "单条记录失败不影响其他记录",
+    "detailed_logging": "归档日志记录到 ~/.vectorbrain/archive_log.jsonl",
+    "state_tracking": "状态文件记录已归档会话，~/.vectorbrain/archive_state.json"
+  },
+  "reliability_measures": [
+    "MD5 哈希检测文件变化",
+    "事务保证原子性",
+    "错误记录不中断整体流程",
+    "详细日志便于问题排查",
+    "状态文件持久化追踪"
+  ],
+  "file_paths": {
+    "input": "~/.openclaw/agents/main/sessions/*.jsonl",
+    "output": "~/.vectorbrain/memory/episodic_memory.db",
+    "state": "~/.vectorbrain/archive_state.json",
+    "log": "~/.vectorbrain/archive_log.jsonl"
+  },
+  "examples": [
+    "归档所有未归档的会话",
+    "检查会话归档状态",
+    "查看归档日志"
+  ],
+  "notes": [
+    "首次运行会归档所有活跃会话",
+    "后续运行只处理新增或更新的会话",
+    "可手动运行：python3 session_archiver.py",
+    "建议配合 cron 定时任务使用"
+  ]
+}

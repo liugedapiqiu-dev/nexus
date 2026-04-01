@@ -1,0 +1,49 @@
+{
+  "name": "self-improvement",
+  "description": "持续改进技能 - 记录错误、教训和最佳实践",
+  "version": "1.0.0",
+  "author": "OpenClaw Community",
+  "updated": "2026-03-10",
+  "triggers": {
+    "intent": [
+      "记录错误",
+      "记录教训",
+      "记录学习",
+      "改进流程",
+      "最佳实践",
+      "用户纠正",
+      "功能请求",
+      "API 失败",
+      "知识更新"
+    ]
+  },
+  "entry": {
+    "type": "file_operations",
+    "paths": {
+      "errors": ".learnings/ERRORS.md",
+      "learnings": ".learnings/LEARNINGS.md",
+      "features": ".learnings/FEATURE_REQUESTS.md"
+    },
+    "operations": ["append", "read", "update"]
+  },
+  "workflow": {
+    "on_error": "记录到 ERRORS.md",
+    "on_correction": "记录到 LEARNINGS.md (category: correction)",
+    "on_feature_request": "记录到 FEATURE_REQUESTS.md",
+    "on_api_failure": "记录到 ERRORS.md (含集成详情)",
+    "on_knowledge_gap": "记录到 LEARNINGS.md (category: knowledge_gap)",
+    "on_best_practice": "记录到 LEARNINGS.md (category: best_practice)"
+  },
+  "promotion_rules": {
+    "workflow_improvements": "→ AGENTS.md",
+    "tool_gotchas": "→ TOOLS.md",
+    "behavioral_patterns": "→ SOUL.md",
+    "broadly_applicable": "→ CLAUDE.md / .github/copilot-instructions.md"
+  },
+  "examples": [
+    "记录刚才的错误：命令执行失败",
+    "用户纠正了我的理解，需要记录",
+    "发现了一个更好的工作流程",
+    "API 调用失败，记录集成问题"
+  ]
+}

@@ -1,0 +1,42 @@
+{
+  "name": "tavily",
+  "description": "AI 优化的网络搜索 - Tavily API",
+  "version": "1.0.0",
+  "author": "OpenClaw Community",
+  "updated": "2026-03-10",
+  "triggers": {
+    "intent": [
+      "搜索网络",
+      "查找信息",
+      "网络调研",
+      "获取最新资讯",
+      "搜索相关文章",
+      "研究主题"
+    ]
+  },
+  "entry": {
+    "type": "api",
+    "provider": "tavily",
+    "endpoint": "https://api.tavily.com/search"
+  },
+  "capabilities": {
+    "search": "AI 优化的搜索结果",
+    "freshness_filter": "按时间筛选（天/周/月/年）",
+    "region_support": "支持特定地区搜索",
+    "language_support": "多语言搜索",
+    "concise_results": "返回简洁相关的结果"
+  },
+  "parameters": {
+    "query": "搜索查询字符串",
+    "search_depth": "basic 或 advanced",
+    "max_results": "返回结果数量 (默认 5)",
+    "include_domains": "指定包含的域名",
+    "exclude_domains": "排除特定域名"
+  },
+  "examples": [
+    "搜索最新的 AI 新闻",
+    "查找 Python 最佳实践",
+    "搜索 OpenClaw 相关文档",
+    "研究竞争对手信息"
+  ]
+}

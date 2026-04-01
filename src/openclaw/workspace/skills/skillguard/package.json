@@ -1,0 +1,21 @@
+{
+  "name": "skillguard",
+  "version": "1.0.0",
+  "description": "Security scanner CLI for OpenClaw skill files",
+  "main": "src/index.js",
+  "bin": {
+    "skillguard": "./src/index.js"
+  },
+  "scripts": {
+    "start": "node src/index.js",
+    "test": "node src/index.js scan ./test-skills"
+  },
+  "keywords": ["security", "scanner", "openclaw", "skills", "cli"],
+  "author": "bossondehiggs",
+  "license": "MIT",
+  "dependencies": {
+    "commander": "^11.1.0",
+    "chalk": "^4.1.2",
+    "glob": "^10.3.10"
+  }
+}

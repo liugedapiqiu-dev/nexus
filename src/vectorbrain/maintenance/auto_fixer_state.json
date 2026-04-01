@@ -1,0 +1,12 @@
+{
+  "last_run": null,
+  "fixes": [],
+  "stats": {
+    "total": 0,
+    "success": 0,
+    "failed": 0
+  },
+  "issues_found": 0,
+  "issues_fixed": 0,
+  "issues_failed": 0
+}

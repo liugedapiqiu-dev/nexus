@@ -1,0 +1,32 @@
+{
+  "generated_at": "2026-03-23T16:55:00+08:00",
+  "task_queue": {
+    "db_path": "~/.vectorbrain/tasks/task_queue.db",
+    "stale_running_minutes": 45,
+    "max_retry_ceiling": 3,
+    "quarantine_status": "failed",
+    "repair_note_prefix": "stability_guard"
+  },
+  "logs": {
+    "freshness_minutes": 90,
+    "targets": [
+      "~/.vectorbrain/connector/task_manager.log",
+      "~/.vectorbrain/connector/opportunity_poller.log",
+      "~/.vectorbrain/session_archiver.log",
+      "~/.vectorbrain/agent_core.log",
+      "~/.vectorbrain/logs/openclaw_api_control_plane.log"
+    ]
+  },
+  "processes": {
+    "expected_patterns": [
+      "task_manager.py",
+      "opportunity_poller.py",
+      "session_archiver.py"
+    ]
+  },
+  "outputs": {
+    "report_json": "~/.vectorbrain/state/stability_report.json",
+    "report_md": "~/.vectorbrain/reports/stability_report_latest.md",
+    "repair_log": "~/.vectorbrain/logs/stability_guard.log"
+  }
+}

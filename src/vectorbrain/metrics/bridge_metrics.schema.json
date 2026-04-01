@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "VectorBrain Bridge Metrics Schema",
+  "type": "object",
+  "properties": {
+    "bridge.memory.knowledge_db.exists": {"type": "boolean"},
+    "bridge.memory.knowledge_db.size_bytes": {"type": "number"},
+    "bridge.memory.episodic_db.exists": {"type": "boolean"},
+    "bridge.memory.lessons_db.exists": {"type": "boolean"},
+    "bridge.monitor.status_json.freshness_sec": {"type": ["number", "null"]},
+    "bridge.monitor.queue_depth": {"type": ["number", "null"]},
+    "bridge.monitor.cpu_used_pct": {"type": ["number", "null"]},
+    "bridge.monitor.memory_used_pct": {"type": ["number", "null"]},
+    "bridge.procurement.latest_run.age_sec": {"type": ["number", "null"]},
+    "bridge.procurement.latest_run.state_progress": {"type": ["number", "null"]},
+    "bridge.procurement.latest_run.has_errors": {"type": "boolean"},
+    "bridge.procurement.latest_run.manual_review_count": {"type": ["number", "null"]},
+    "bridge.procurement.latest_run.recommended_count": {"type": ["number", "null"]},
+    "bridge.procurement.submit.dry_run_only": {"type": "boolean"}
+  },
+  "additionalProperties": true
+}

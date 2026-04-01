@@ -1,0 +1,62 @@
+{
+  "name": "ahao-auto-updater",
+  "version": "1.0.0",
+  "description": "[YOUR_AI_NAME]文件变更检测器 - 自动检测关键文件变化并记录到变更日志",
+  "author": "[YOUR_AI_NAME] 🧠",
+  "entry": "python_script",
+  "script": "detect_changes.py",
+  "trigger": {
+    "intents": [
+      "检测文件变化",
+      "检查配置变更",
+      "更新变更日志",
+      "文件完整性检查",
+      "技能变更监控"
+    ],
+    "keywords": [
+      "文件变化",
+      "配置变更",
+      "变更检测",
+      "更新日志",
+      "文件监控"
+    ]
+  },
+  "capabilities": {
+    "file_monitoring": "监控关键目录和文件的变化",
+    "hash_comparison": "使用 SHA256 哈希值比对文件内容",
+    "changelog_update": "自动更新 CHANGELOG.md",
+    "concurrency_protection": "文件锁机制防止并发冲突",
+    "timeout_protection": "10 秒超时保护",
+    "disk_space_check": "定期清理和磁盘空间检查"
+  },
+  "config": {
+    "monitored_directories": [
+      "~/.openclaw/skills/",
+      "~/.openclaw/hooks/",
+      "~/.openclaw/workspace/docs/",
+      "~/.vectorbrain/connector/",
+      "~/.vectorbrain/src/"
+    ],
+    "file_patterns": ["*.py", "*.json", "*.md", "*.sh", "*.yaml", "*.yml", "*.toml"],
+    "exclude_dirs": ["node_modules", "__pycache__", ".git", "venv"],
+    "hash_file": "~/.openclaw/workspace/.file_hashes.json",
+    "changelog_file": "~/.openclaw/workspace/CHANGELOG.md"
+  },
+  "output": {
+    "format": "markdown",
+    "sections": [
+      "变更摘要",
+      "新增文件",
+      "修改文件",
+      "删除文件",
+      "哈希记录更新"
+    ]
+  },
+  "bug_protections": [
+    "并发冲突 - 文件锁机制",
+    "超时保护 - 10 秒超时",
+    "权限检查 - 启动前验证",
+    "磁盘空间 - 定期清理",
+    "时区统一 - Asia/Shanghai (标准库)"
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "id": "vectorbrain",
+  "name": "VectorBrain",
+  "description": "VectorBrain memory and task system",
+  "version": "1.0.0",
+  "entry": "index.js",
+  "author": "jo",
+  "enabled": true,
+  "configSchema": {
+    "type": "object",
+    "properties": {},
+    "additionalProperties": false
+  }
+}

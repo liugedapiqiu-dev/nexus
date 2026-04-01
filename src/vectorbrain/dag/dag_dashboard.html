@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>VectorBrain DAG Dashboard</title>
+ <script src="https://cdn.jsdelivr.net/npm/mermaid@9.4.3/dist/mermaid.min.js"></script>
+ <style>
+ body {
+ font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+ background-color: #f8fafc;
+ color: #334155;
+ margin: 0;
+ padding: 2rem;
+ }
+ .header {
+ display: flex;
+ justify-content: space-between;
+ align-items: center;
+ margin-bottom: 2rem;
+ padding-bottom: 1rem;
+ border-bottom: 2px solid #e2e8f0;
+ }
+ .title {
+ font-size: 1.8rem;
+ font-weight: 600;
+ }
+ .status-badge {
+ background-color: #e0f2fe;
+ color: #0369a1;
+ padding: 0.5rem 1rem;
+ border-radius: 9999px;
+ font-size: 0.875rem;
+ font-weight: 500;
+ }
+ #graph-container {
+ background: white;
+ border-radius: 12px;
+ padding: 2rem;
+ box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+ min-height: 400px;
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ }
+ /* 避免闪烁的过渡效果 */
+ svg {
+ transition: all 0.3s ease;
+ }
+ </style>
+</head>
+<body>
+
+ <div class="header">
+ <div class="title">🧠 VectorBrain 任务监控大屏</div>
+ <div class="status-badge" id="sync-status">🟢 实时同步中 (每秒刷新)</div>
+ </div>
+
+ <div id="graph-container">
+ <div id="mermaid-view">加载中...</div>
+ </div>
+
+ <script>
+ // 初始化 Mermaid
+ mermaid.initialize({ 
+ startOnLoad: false,
+ theme: 'base',
+ securityLevel: 'loose',
+ flowchart: { curve: 'basis' } // 让连线更平滑
+ });
+
+ // API 基础地址
+ const API_URL = "http://127.0.0.1:9000/api/v1/tasks";
+ let lastGraphDef = "";
+
+ async function fetchTasksAndRender() {
+ try {
+ const response = await fetch(API_URL);
+ const result = await response.json();
+ const tasks = result.data;
+
+ if (!tasks || tasks.length === 0) {
+ document.getElementById('mermaid-view').innerHTML = "<i>暂无运行中的 DAG 任务</i>";
+ return;
+ }
+
+ // 1. 构建 Mermaid 语法字符串
+ let graphDef = "graph LR\n";
+ 
+ // 注入状态机颜色样式库
+ graphDef += "classDef pending fill:#f3f4f6,stroke:#9ca3af,stroke-width:2px,color:#6b7280;\n";
+ graphDef += "classDef ready fill:#fef08a,stroke:#eab308,stroke-width:2px,color:#854d0e;\n";
+ // running 状态加粗边框，醒目显示
+ graphDef += "classDef running fill:#bfdbfe,stroke:#3b82f6,stroke-width:4px,color:#1e40af;\n";
+ graphDef += "classDef done fill:#bbf7d0,stroke:#22c55e,stroke-width:2px,color:#166534;\n";
+ graphDef += "classDef failed fill:#fecaca,stroke:#ef4444,stroke-width:3px,color:#991b1b;\n";
+ // cancelled 状态使用虚线边框
+ graphDef += "classDef cancelled fill:#e5e7eb,stroke:#9ca3af,stroke-width:2px,stroke-dasharray: 5 5,color:#6b7280;\n";
+
+ // 2. 先把 task_id 映射成 Mermaid 安全的节点 ID
+ // Mermaid 的 flowchart 解析器对部分关键字（如 graph/subgraph）很敏感，
+ // 即使出现在 ID 的子串里也可能触发词法冲突。
+ // 这里直接用纯数字序号作为节点 ID，彻底规避关键字/非法字符问题。
+ const idMap = new Map();
+ tasks.forEach((t, idx) => {
+ const raw = String(t.task_id ?? `task_${idx}`);
+ idMap.set(raw, `N${idx}`);
+ });
+
+ // 3. 遍历任务，生成节点和连线
+ const placeholderDeps = new Set();
+ tasks.forEach((task, idx) => {
+ const rawId = String(task.task_id ?? `task_${idx}`);
+ const nodeId = idMap.get(rawId) ?? `N${idx}`;
+
+ // 更强的标题清洗：避免 ] [ \n 等破坏 Mermaid 语法
+ const safeTitle = String(task.title ?? rawId)
+ .replace(/"/g, "'")
+ .replace(/[\r\n]+/g, ' ')
+ .replace(/\[/g, '(')
+ .replace(/\]/g, ')');
+
+ const safeStatus = String(task.status ?? 'pending').replace(/[^a-zA-Z0-9_]/g, '_');
+
+ // 定义节点: 节点 ID["标题<br/>状态"]:::样式类
+ graphDef += `${nodeId}["<b>${safeTitle}</b><br/>${safeStatus}"]:::${safeStatus}\n`;
+
+ // 定义连线: 父节点 --> 子节点
+ if (task.dependencies && task.dependencies.length > 0) {
+ task.dependencies.forEach(depRaw => {
+ const depIdRaw = String(depRaw);
+ const depNodeId = idMap.get(depIdRaw);
+ if (depNodeId) {
+ graphDef += `${depNodeId} --> ${nodeId}\n`;
+ } else {
+ // 依赖不在 tasks 列表里：先记录占位节点，避免渲染断裂
+ placeholderDeps.add(depIdRaw);
+ const depPlaceholderId = `M_${depIdRaw.replace(/[^a-zA-Z0-9_]/g, '_')}`;
+ graphDef += `${depPlaceholderId} --> ${nodeId}\n`;
+ }
+ });
+ }
+ });
+
+ // 4. 为缺失的依赖补占位节点
+ placeholderDeps.forEach(depRawId => {
+ const depNodeId = `M_${String(depRawId).replace(/[^a-zA-Z0-9_]/g, '_')}`;
+ graphDef += `${depNodeId}["<i>${String(depRawId).replace(/"/g, "'")}</i><br/>missing"]:::pending\n`;
+ });
+
+ // 3. 性能优化：只有当状态或拓扑发生变化时，才触发重绘（防止页面频繁闪烁）
+ if (graphDef !== lastGraphDef) {
+ lastGraphDef = graphDef;
+ 
+ // 动态渲染并替换 SVG
+ mermaid.mermaidAPI.render('mermaid-svg-temp', graphDef, (svgCode) => {
+ document.getElementById('mermaid-view').innerHTML = svgCode;
+ });
+ }
+
+ } catch (error) {
+ console.error("API 获取失败:", error);
+ document.getElementById('sync-status').innerHTML = "🔴 同步断开";
+ document.getElementById('sync-status').style.backgroundColor = "#fee2e2";
+ document.getElementById('sync-status').style.color = "#991b1b";
+ }
+ }
+
+ // 立即执行一次
+ fetchTasksAndRender();
+
+ // 设定定时器，每秒拉取一次最新状态
+ setInterval(fetchTasksAndRender, 1000);
+
+ </script>
+</body>
+</html>

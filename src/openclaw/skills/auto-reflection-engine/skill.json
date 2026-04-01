@@ -1,0 +1,62 @@
+{
+  "name": "auto-reflection-engine",
+  "description": "任务完成后自动反思系统 - 分析已完成任务，提取经验教训，自动记录到 VectorBrain",
+  "version": "1.0.0",
+  "author": "[YOUR_AI_NAME] 🧠",
+  "created_at": "2026-03-10T15:50:00+08:00",
+  "triggers": {
+    "intent": [
+      "任务反思",
+      "经验总结",
+      "教训提取",
+      "任务复盘",
+      "自动反思"
+    ],
+    "auto": {
+      "task_completion": true,
+      "idle_hours": 6,
+      "min_interval_hours": 12,
+      "description": "任务完成后自动触发，或每 12 小时检查一次"
+    }
+  },
+  "entry": {
+    "type": "script",
+    "path": "~/.openclaw/skills/",
+    "main": "auto_reflection_engine.py",
+    "command": "python3 auto_reflection_engine.py"
+  },
+  "features": {
+    "analyze_completed_tasks": "分析最近 24 小时完成的任务",
+    "extract_lessons": "提取成功经验和失败教训",
+    "identify_patterns": "识别有效的工作模式",
+    "generate_action_items": "生成后续行动建议",
+    "save_to_vectorbrain": "保存到知识记忆，支持向量检索",
+    "mark_reflected": "标记已反思的任务，避免重复"
+  },
+  "task_types": {
+    "skill_configuration": "技能配置相关任务",
+    "memory_operation": "记忆系统操作任务",
+    "health_check": "健康检查任务",
+    "cleanup": "清理整理任务",
+    "system_upgrade": "系统升级任务",
+    "experience": "其他经验类任务"
+  },
+  "reflection_template": {
+    "success_factors": "成功因素分析",
+    "failure_reasons": "失败原因分析",
+    "patterns": "发现的工作模式",
+    "action_items": "后续行动建议"
+  },
+  "examples": [
+    "反思今天完成的任务",
+    "总结项目经验",
+    "提取失败教训",
+    "分析任务模式"
+  ],
+  "notes": [
+    "自动触发：任务完成后或定期触发",
+    "避免重复：已反思的任务会被标记",
+    "质量保障：失败任务会标记需要人工审核",
+    "所有数据保存到 VectorBrain 向量数据库"
+  ]
+}

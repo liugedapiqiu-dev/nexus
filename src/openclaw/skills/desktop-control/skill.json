@@ -1,0 +1,44 @@
+{
+  "name": "desktop-control",
+  "description": "桌面控制 - macOS 鼠标、键盘、屏幕自动化",
+  "version": "1.0.0",
+  "author": "OpenClaw Community",
+  "updated": "2026-03-10",
+  "triggers": {
+    "intent": [
+      "点击鼠标",
+      "键盘输入",
+      "屏幕截图",
+      "桌面自动化",
+      "GUI 操作",
+      "控制鼠标",
+      "模拟按键",
+      "屏幕识别"
+    ]
+  },
+  "entry": {
+    "type": "cli",
+    "command": "desktop-control",
+    "actions": [
+      "mouse_click",
+      "mouse_move",
+      "keyboard_type",
+      "keyboard_press",
+      "screenshot",
+      "image_search"
+    ]
+  },
+  "capabilities": {
+    "mouse_control": "移动和点击鼠标",
+    "keyboard_control": "模拟键盘输入和按键",
+    "screen_capture": "屏幕截图",
+    "image_recognition": "在屏幕上查找图像"
+  },
+  "examples": [
+      "点击屏幕坐标 (100, 200)",
+      "输入文字 Hello World",
+      "按回车键",
+      "截取当前屏幕",
+      "在屏幕上找到保存按钮并点击"
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "workspace": "~/.openclaw/workspace",
+  "model": "custom-coding-dashscope-aliyuncs-com/qwen3.5-plus",
+  "gateway": {
+    "mode": "local",
+    "port": 18789,
+    "bind": "loopback"
+  },
+  "env": {
+    "BRAVE_API_KEY": "[YOUR_BRAVE_API_KEY]",
+    "TAVILY_API_KEY": "[YOUR_TAVILY_API_KEY]"
+  },
+  "plugins": {
+    "allow": [
+      "openclaw-feishu"
+    ]
+  },
+  "__fallback__": {
+    "enabled": true,
+    "cloud_model": "custom-coding-dashscope-aliyuncs-com/qwen3.5-plus",
+    "local_model": "ollama/qwen2.5:14b",
+    "auto_switch": true,
+    "last_switch_reason": "network_change"
+  }
+}

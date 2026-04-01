@@ -1,0 +1,48 @@
+{
+  "name": "office-automation",
+  "description": "Office 自动化技能 - 处理 Word 和 Excel 文件",
+  "version": "1.0.0",
+  "author": "texiaoyao (GitHub)",
+  "updated": "2026-03-10",
+  "triggers": {
+    "intent": [
+      "处理 Excel",
+      "处理 Word",
+      "读取 Excel",
+      "读取 Word",
+      "写入 Excel",
+      "写入 Word",
+      "合并 Excel",
+      "转换 Excel",
+      "Excel 数据分析",
+      "批量生成文档",
+      "填充模板",
+      "提取表格"
+    ]
+  },
+  "entry": {
+    "type": "script",
+    "path": "./scripts/",
+    "scripts": {
+      "excel_read": "python excel_processor.py read",
+      "excel_write": "python excel_processor.py write",
+      "excel_merge": "python excel_processor.py merge",
+      "excel_convert": "python excel_processor.py convert",
+      "excel_analyze": "python excel_processor.py analyze",
+      "word_read": "python word_processor.py read",
+      "word_write": "python word_processor.py write",
+      "word_template": "python word_processor.py template",
+      "word_extract": "python word_processor.py extract"
+    }
+  },
+  "requirements": {
+    "python_packages": ["python-docx", "openpyxl", "pandas"]
+  },
+  "examples": [
+    "读取 data.xlsx 的内容",
+    "合并 reports 文件夹中的所有 Excel 文件",
+    "将 sales.xlsx 转换为 CSV",
+    "分析 sales.xlsx 的销售数据",
+    "用 data.json 填充 contract.docx 模板"
+  ]
+}

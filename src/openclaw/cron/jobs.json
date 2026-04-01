@@ -1,0 +1,34 @@
+{
+  "version": 1,
+  "jobs": [
+    {
+      "id": "feishu-chat-scrape-incremental",
+      "agentId": "main",
+      "sessionKey": "agent:main:feishu:direct",
+      "name": "Feishu chat scrape incremental (every 3h)",
+      "enabled": true,
+      "createdAtMs": 1704067200000,
+      "updatedAtMs": 1704067200000,
+      "schedule": {
+        "kind": "every",
+        "everyMs": 10800000,
+        "anchorMs": 1704067200000
+      },
+      "sessionTarget": "main",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "systemEvent",
+        "text": "【定时任务提醒】执行飞书群消息增量抓取。脚本：~/.vectorbrain/intelligence/chat_scraper_v2.py --mode incremental"
+      },
+      "state": {
+        "nextRunAtMs": 0,
+        "lastRunAtMs": 0,
+        "lastRunStatus": "idle",
+        "lastStatus": "idle",
+        "lastDurationMs": 0,
+        "lastDeliveryStatus": "not-requested",
+        "consecutiveErrors": 0
+      }
+    }
+  ]
+}

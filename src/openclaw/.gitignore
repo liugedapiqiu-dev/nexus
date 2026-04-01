@@ -1,0 +1,17 @@
+# Logs
+*.log
+*.log.*
+logs/
+
+# DB files
+*.db
+*.db-journal
+*.db-wal
+*.db-shm
+
+# DS_Store
+.DS_Store
+
+# Temp files
+*.tmp
+*.bak

@@ -1,0 +1,46 @@
+# Logs and state (too large, regenerated)
+*.log
+*.log.*
+archive_log.jsonl
+archive_state.json
+chat_scraper_log.jsonl
+chat_scraper_state.json
+session_archiver.log
+token_usage.db
+*.db-journal
+*.db-wal
+*.db-shm
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+.venv*/
+.venv-faiss/
+.venv-tools/
+
+# Node modules
+node_modules/
+
+# Ollama models (don't backup, huge)
+.ollama/
+
+#DS_Store
+.DS_Store
+*.DS_Store
+
+# Large binary/data files > 50MB
+# (handled by git LFS if needed, here just exclude)
+*.sqlite
+*.db
+
+# Temp files
+*.tmp
+*.bak
+*.bak.*
+*.backup*
+*.db
+*.index
+*.zip
+backups/
+pixel_assets/像素方块/

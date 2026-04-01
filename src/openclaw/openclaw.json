@@ -1,0 +1,240 @@
+{
+  "meta": {
+    "lastTouchedVersion": "2026.3.13",
+    "lastTouchedAt": "2026-03-29T16:11:03.603Z"
+  },
+  "wizard": {
+    "lastRunAt": "2026-03-29T16:11:03.564Z",
+    "lastRunVersion": "2026.3.13",
+    "lastRunCommand": "configure",
+    "lastRunMode": "local"
+  },
+  "models": {
+    "mode": "merge",
+    "providers": {
+      "custom-coding-dashscope-aliyuncs-com": {
+        "baseUrl": "https://coding.dashscope.aliyuncs.com/apps/anthropic",
+        "apiKey": "[YOUR_API_KEY_HERE]",
+        "api": "anthropic-messages",
+        "models": [
+          {
+            "id": "qwen3.5-plus",
+            "name": "qwen3.5-plus",
+            "reasoning": true,
+            "input": [
+              "text"
+            ],
+            "cost": {
+              "input": 0,
+              "output": 0,
+              "cacheRead": 0,
+              "cacheWrite": 0
+            },
+            "contextWindow": 1000000,
+            "maxTokens": 1000000
+          }
+        ]
+      },
+      "custom-redeem-ai-online": {
+        "baseUrl": "https://redeem-ai.online/v1/",
+        "apiKey": "[YOUR_API_KEY_HERE]",
+        "api": "openai-completions",
+        "models": [
+          {
+            "id": "gpt-5.4",
+            "name": "gpt-5.4 (Custom Provider)",
+            "api": "openai-completions",
+            "reasoning": false,
+            "input": [
+              "text",
+              "image"
+            ],
+            "cost": {
+              "input": 0,
+              "output": 0,
+              "cacheRead": 0,
+              "cacheWrite": 0
+            },
+            "contextWindow": 1000000,
+            "maxTokens": 500000
+          }
+        ]
+      },
+      "custom-api-minimaxi-com": {
+        "baseUrl": "https://api.minimaxi.com/anthropic",
+        "apiKey": "[YOUR_API_KEY_HERE]",
+        "api": "anthropic-messages",
+        "models": [
+          {
+            "id": "MiniMax-M2.7",
+            "name": "MiniMax-M2.7 (Custom Provider)",
+            "reasoning": false,
+            "input": [
+              "text"
+            ],
+            "cost": {
+              "input": 0,
+              "output": 0,
+              "cacheRead": 0,
+              "cacheWrite": 0
+            },
+            "contextWindow": 5000000,
+            "maxTokens": 5000000
+          }
+        ]
+      }
+    }
+  },
+  "agents": {
+    "defaults": {
+      "model": {
+        "primary": "custom-api-minimaxi-com/MiniMax-M2.7",
+        "fallbacks": []
+      },
+      "imageModel": {
+        "primary": "custom-redeem-ai-online/gpt-5.4",
+        "fallbacks": []
+      },
+      "models": {
+        "custom-coding-dashscope-aliyuncs-com/qwen3.5-plus": {
+          "alias": "qwen"
+        },
+        "custom-redeem-ai-online/gpt-5.4": {
+          "alias": "gpt"
+        },
+        "custom-api-minimaxi-com/MiniMax-M2.7": {}
+      },
+      "workspace": "/home/user/.openclaw/workspace",
+      "memorySearch": {
+        "enabled": false
+      },
+      "compaction": {
+        "mode": "safeguard",
+        "reserveTokensFloor": 50000
+      },
+      "maxConcurrent": 100,
+      "subagents": {
+        "maxConcurrent": 100
+      },
+      "sandbox": {
+        "mode": "off"
+      }
+    }
+  },
+  "tools": {
+    "fs": {
+      "workspaceOnly": true
+    }
+  },
+  "messages": {
+    "ackReactionScope": "group-mentions"
+  },
+  "commands": {
+    "native": "auto",
+    "nativeSkills": "auto",
+    "restart": true,
+    "ownerDisplay": "raw"
+  },
+  "session": {
+    "dmScope": "per-channel-peer"
+  },
+  "hooks": {
+    "internal": {
+      "enabled": true,
+      "entries": {
+        "boot-md": {
+          "enabled": true
+        },
+        "command-logger": {
+          "enabled": true
+        },
+        "session-memory": {
+          "enabled": true
+        }
+      }
+    }
+  },
+  "channels": {
+    "feishu": {
+      "enabled": true,
+      "appId": "cli_a9b65317fc79dbc4",
+      "appSecret": "[YOUR_APP_SECRET_HERE]",
+      "connectionMode": "websocket",
+      "domain": "feishu",
+      "groupPolicy": "allowlist",
+      "groupAllowFrom": [
+        "ou_cd2f520717fd4035c6ef3db89a53b748"
+      ],
+      "dmPolicy": "open",
+      "allowFrom": [
+        "*"
+      ],
+      "groups": {
+        "oc_4f9a5f0e671b6181048ed2964338545b": {
+          "requireMention": false
+        }
+      }
+    }
+  },
+  "gateway": {
+    "port": 18789,
+    "mode": "local",
+    "bind": "loopback",
+    "auth": {
+      "mode": "token",
+      "token": "[YOUR_TOKEN_HERE]"
+    },
+    "tailscale": {
+      "mode": "off",
+      "resetOnExit": false
+    },
+    "nodes": {
+      "denyCommands": [
+        "canvas.present",
+        "canvas.hide",
+        "canvas.navigate",
+        "canvas.eval",
+        "canvas.snapshot",
+        "canvas.a2ui.push",
+        "canvas.a2ui.reset"
+      ]
+    }
+  },
+  "plugins": {
+    "allow": [
+      "vectorbrain",
+      "feishu"
+    ],
+    "slots": {},
+    "entries": {
+      "vectorbrain": {
+        "enabled": true
+      },
+      "feishu": {
+        "enabled": true
+      }
+    },
+    "installs": {
+      "feishu": {
+        "source": "npm",
+        "spec": "@openclaw/feishu@2026.3.7",
+        "installPath": "/home/user/.openclaw/extensions/feishu",
+        "version": "2026.3.7",
+        "resolvedName": "@openclaw/feishu",
+        "resolvedVersion": "2026.3.7",
+        "resolvedSpec": "@openclaw/feishu@2026.3.7",
+        "integrity": "sha512-CHPcL+WHYKYR2HJKRYsRtlXx/wbQRy5axltjjH9qXkR8ghxygDmOHZREjxyFEbjFJ3wnIuvgjLE7JYTg3nPpDA==",
+        "shasum": "c4b31dbe2ff0bc7034334873482ad18ac60a0767",
+        "resolvedAt": "2026-03-09T02:22:59.428Z",
+        "installedAt": "2026-03-09T02:23:15.320Z"
+      },
+      "vectorbrain": {
+        "source": "path",
+        "sourcePath": "/home/user/.openclaw/extensions/vectorbrain",
+        "installPath": "/home/user/.openclaw/extensions/vectorbrain",
+        "version": "1.0.0",
+        "installedAt": "2026-03-23T12:00:00+08:00"
+      }
+    }
+  }
+}

@@ -1,0 +1,59 @@
+{
+  "name": "auto-archive-system",
+  "description": "版本自动归档系统 - 自动检测并归档旧版本文件，保持工作区整洁",
+  "version": "1.0.0",
+  "author": "[YOUR_AI_NAME] 🧠",
+  "created_at": "2026-03-10T16:00:00+08:00",
+  "triggers": {
+    "intent": [
+      "归档文件",
+      "清理旧版本",
+      "整理文件",
+      "清理备份",
+      "版本管理"
+    ],
+    "auto": {
+      "weekly": true,
+      "description": "每周自动运行一次，检查并归档旧文件"
+    }
+  },
+  "entry": {
+    "type": "script",
+    "path": "~/.openclaw/skills/auto-archive-system/",
+    "main": "auto_archive.py",
+    "command": "python3 auto_archive.py"
+  },
+  "features": {
+    "dashboard_cleanup": "保留最新 2 个 Dashboard 版本，归档旧版",
+    "backup_cleanup": "归档所有.bak 和.backup 文件",
+    "report_cleanup": "归档 30 天前的旧报告",
+    "auto_archive_dir": "统一归档到 ~/.vectorbrain/archive/",
+    "generate_report": "生成清理报告并保存到 VectorBrain"
+  },
+  "file_patterns": {
+    "dashboard": {
+      "pattern": "dashboard*.py",
+      "keep_latest": 2
+    },
+    "backup": {
+      "pattern": "*.bak, *.backup",
+      "keep_latest": 0
+    },
+    "reports": {
+      "pattern": "*_report_*.md",
+      "keep_days": 30
+    }
+  },
+  "examples": [
+    "归档旧文件",
+    "清理 Dashboard 版本",
+    "整理备份文件",
+    "清理工作区"
+  ],
+  "notes": [
+    "自动触发：每周运行一次",
+    "安全操作：移动文件到归档目录，不删除",
+    "所有归档记录保存到 VectorBrain",
+    "可手动运行：python3 auto_archive.py --force"
+  ]
+}

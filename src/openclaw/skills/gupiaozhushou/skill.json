@@ -1,0 +1,43 @@
+{
+  "name": "gupiaozhushou",
+  "description": "财经分析工具包 - 股票分析、市场趋势预测、投资建议",
+  "version": "1.0.0",
+  "author": "OpenClaw Community",
+  "updated": "2026-03-10",
+  "icon": "📈",
+  "triggers": {
+    "intent": [
+      "股票分析",
+      "股价查询",
+      "财经分析",
+      "市场趋势",
+      "投资建议",
+      "投资组合",
+      "技术指标",
+      "财经新闻"
+    ]
+  },
+  "entry": {
+    "type": "python_module",
+    "path": "./gupiaozhushou-财经分析工具包/",
+    "main": "finance_toolkit.py",
+    "module": "finance_toolkit"
+  },
+  "requirements": {
+    "python_packages": ["yfinance", "pandas", "numpy", "matplotlib"]
+  },
+  "capabilities": {
+    "stock_analysis": "实时股价、历史数据、技术指标",
+    "market_trends": "大盘指数、行业分析、市场情绪",
+    "investment_advice": "风险评估、投资组合优化、资产配置",
+    "news_aggregation": "财经新闻、舆情监控、影响评估"
+  },
+  "examples": [
+    "分析 AAPL 的股票走势",
+    "查询特斯拉的实时股价",
+    "分析今天的大盘趋势",
+    "给出投资组合建议",
+    "计算某股票的技术指标"
+  ],
+  "disclaimer": "本工具包提供的分析结果仅供参考，不构成投资建议。投资有风险，决策需谨慎。"
+}

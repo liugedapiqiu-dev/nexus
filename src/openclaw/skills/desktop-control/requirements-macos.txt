@@ -1,0 +1,17 @@
+PyAutoGUI==0.9.54
+pillow==12.1.1
+opencv-python==4.13.0.92
+PyGetWindow==0.0.9
+pyperclip==1.11.0
+# Transitive deps below are usually installed automatically, but pinning can
+# help when reproducing the skill venv exactly on macOS.
+MouseInfo==0.1.3
+PyMsgBox==2.0.1
+PyRect==0.2.0
+PyScreeze==1.0.1
+pytweening==1.2.0
+numpy==2.4.3
+pyobjc-core==12.1
+pyobjc-framework-Cocoa==12.1
+pyobjc-framework-Quartz==12.1
+rubicon-objc==0.5.3

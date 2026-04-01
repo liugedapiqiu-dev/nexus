@@ -1,0 +1,24 @@
+{
+  "name": "vectorbrain",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "index.ts",
+  "description": "VectorBrain - AI Memory and Task Management for OpenClaw",
+  "scripts": {
+    "build": "tsc",
+    "start": "node index.js"
+  },
+  "keywords": [
+    "openclaw",
+    "vectorbrain",
+    "memory",
+    "task",
+    "ai"
+  ],
+  "author": "Wang Jianhao",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^25.5.0",
+    "typescript": "^5.9.3"
+  }
+}

@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pixel Office Demo</title>
+  <link rel="stylesheet" href="./style.css" />
+</head>
+<body>
+  <div class="page-shell">
+    <header class="topbar">
+      <div>
+        <h1>像素办公室 Demo</h1>
+        <p>top-down orthogonal / 30×20 grid / 可验收最小交付</p>
+      </div>
+      <div class="topbar-links">
+        <a href="/">返回监控首页</a>
+        <span class="pill">程序化像素占位实现</span>
+      </div>
+    </header>
+
+    <main class="layout">
+      <section class="stage-wrap">
+        <div class="scene-frame">
+          <div class="scene" id="scene">
+            <div class="grid-underlay"></div>
+
+            <div class="zone zone-dev">
+              <div class="zone-title">研发工位区</div>
+            </div>
+            <div class="zone zone-meeting">
+              <div class="zone-title">独立办公室 / 会议室</div>
+            </div>
+            <div class="zone zone-server">
+              <div class="zone-title">SRE 机房</div>
+            </div>
+            <div class="zone zone-break">
+              <div class="zone-title">茶水 / 休闲区</div>
+            </div>
+
+            <div class="wall wall-v" style="left: 50%; top: 2%; height: 48%;"></div>
+            <div class="wall wall-h" style="left: 52%; top: 49%; width: 44%;"></div>
+            <div class="door" style="left: 49.2%; top: 25%;"></div>
+            <div class="door" style="left: 72%; top: 48.1%; transform: rotate(90deg);"></div>
+
+            <div class="desk-cluster" style="--x:2; --y:2;">
+              <div class="furniture desk"></div><div class="monitor"></div><div class="chair"></div>
+            </div>
+            <div class="desk-cluster" style="--x:8; --y:2;">
+              <div class="furniture desk"></div><div class="monitor"></div><div class="chair"></div>
+            </div>
+            <div class="desk-cluster" style="--x:2; --y:7;">
+              <div class="furniture desk"></div><div class="monitor"></div><div class="chair"></div>
+            </div>
+            <div class="desk-cluster" style="--x:8; --y:7;">
+              <div class="furniture desk"></div><div class="monitor"></div><div class="chair"></div>
+            </div>
+
+            <div class="meeting-table" style="--x:18; --y:4;"></div>
+            <div class="back-pc" style="--x:21; --y:3;"></div>
+            <div class="visitor-chair" style="--x:17; --y:8;"></div>
+            <div class="visitor-chair" style="--x:24; --y:8;"></div>
+            <div class="bookshelf" style="--x:26; --y:3;"></div>
+            <div class="whiteboard" style="--x:17; --y:2;"></div>
+            <div class="clock" style="--x:27; --y:2;"></div>
+
+            <div class="server-rack rack-a" style="--x:2; --y:13;">
+              <span class="light blue"></span><span class="light green"></span><span class="light blue delay2"></span>
+            </div>
+            <div class="server-rack rack-b alert" style="--x:6; --y:13;">
+              <span class="light green"></span><span class="light blue delay1"></span><span class="light green delay2"></span>
+              <span class="alert-core"></span>
+            </div>
+            <div class="server-rack rack-c" style="--x:10; --y:13;">
+              <span class="light blue"></span><span class="light green delay1"></span><span class="light blue delay2"></span>
+            </div>
+
+            <div class="fridge" style="--x:18; --y:13;"><div class="split"></div></div>
+            <div class="water-dispenser" style="--x:22; --y:13;"></div>
+            <div class="vending-machine" style="--x:25; --y:12;"></div>
+            <div class="rug" style="--x:20; --y:15;"></div>
+            <div class="sofa" style="--x:22; --y:16;"></div>
+            <div class="painting" style="--x:28; --y:14;"></div>
+
+            <div class="plant" style="--x:15; --y:10;"></div>
+            <div class="plant" style="--x:29; --y:10;"></div>
+            <div class="floor-lamp" style="--x:27; --y:17;"></div>
+            <div class="lamp-glow" style="--x:26; --y:16;"></div>
+
+            <div class="terminal-screen" style="--x:12; --y:11;">
+              <div class="terminal-header">rm -rf /*</div>
+              <pre id="terminalText">$ sudo rm -rf /*</pre>
+            </div>
+
+            <div class="character" data-name="主控" data-task="拆需求 / 推主线" style="--x:5; --y:5; --color:#ffe082;">
+              <div class="bubble ok">拆需求中</div>
+              <div class="sprite human"></div>
+            </div>
+            <div class="character" data-name="删库哥" data-task="危险试跑 / 高危终端" style="--x:13; --y:12; --color:#7dff8a;">
+              <div class="bubble danger">终端暴走</div>
+              <div class="sprite hacker"></div>
+            </div>
+            <div class="character" data-name="摸鱼位" data-task="窗口最小化 / 伪装忙碌" style="--x:9; --y:5; --color:#9ad0ff;">
+              <div class="bubble idle">窗口最小化</div>
+              <div class="sprite human"></div>
+            </div>
+            <div class="character" data-name="前机" data-task="卡点梳理 / 重排依赖" style="--x:4; --y:9; --color:#ffcc80;">
+              <div class="bubble ok">卡点梳理</div>
+              <div class="sprite human alt"></div>
+            </div>
+            <div class="character" data-name="情报台" data-task="监听进展 / 汇总动态" style="--x:18; --y:6; --color:#b39ddb;">
+              <div class="bubble ok">监听进展</div>
+              <div class="sprite human alt2"></div>
+            </div>
+            <div class="character" data-name="警戒员" data-task="盯风险 / 边界检查" style="--x:24; --y:5; --color:#ef9a9a;">
+              <div class="bubble warn">盯风险中</div>
+              <div class="sprite guard"></div>
+            </div>
+            <div class="character" data-name="值班 SRE" data-task="告警处理 / 机柜值守" style="--x:8; --y:16; --color:#80cbc4;">
+              <div class="bubble warn">机柜红灯!</div>
+              <div class="sprite sre"></div>
+            </div>
+
+            <div class="critter patrol" id="cat" data-kind="cat" style="--x:23; --y:18;">
+              <div class="bubble tiny">橘猫巡逻</div>
+              <div class="sprite cat"></div>
+            </div>
+            <div class="critter patrol" id="lobster1" data-kind="lobster" style="--x:19; --y:18;">
+              <div class="bubble tiny">夹线缆</div>
+              <div class="sprite lobster"></div>
+            </div>
+            <div class="critter patrol" id="lobster2" data-kind="lobster" style="--x:28; --y:18;">
+              <div class="bubble tiny">巡边角</div>
+              <div class="sprite lobster"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <aside class="sidebar">
+        <div class="panel">
+          <h2>验收清单</h2>
+          <ul>
+            <li>✅ 30×20 正交俯视网格</li>
+            <li>✅ 三大区块清晰分区</li>
+            <li>✅ 指定对象与角色齐全</li>
+            <li>✅ 服务器灯 / 红色告警 / 终端字符 / 灯光晕 / 巡逻动效</li>
+            <li>✅ 无真实素材时使用程序化像素占位</li>
+          </ul>
+        </div>
+        <div class="panel legend">
+          <h2>角色状态</h2>
+          <div class="legend-item"><span class="dot ok"></span> 正常推进</div>
+          <div class="legend-item"><span class="dot warn"></span> 风险关注</div>
+          <div class="legend-item"><span class="dot danger"></span> 高危操作</div>
+        </div>
+        <div class="panel notes">
+          <h2>说明</h2>
+          <p>当前版本优先保证布局、像素风、角色表达和动态可见性，家具与角色均为 CSS/DOM 程序化绘制。</p>
+          <p>适合后续继续替换为真实 sprite sheet、加入寻路、碰撞和剧情交互。</p>
+        </div>
+      </aside>
+    </main>
+  </div>
+
+  <script src="./app.js"></script>
+</body>
+</html>

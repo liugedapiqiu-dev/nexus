@@ -1,0 +1,55 @@
+{
+  "name": "memory-extraction-engine",
+  "description": "记忆自动提炼引擎 - 分析情景记忆，识别高价值对话，自动提炼为知识记忆",
+  "version": "1.0.0",
+  "author": "[YOUR_AI_NAME] 🧠",
+  "created_at": "2026-03-10T15:50:00+08:00",
+  "triggers": {
+    "intent": [
+      "提炼记忆",
+      "分析情景记忆",
+      "提取知识",
+      "记忆整理",
+      "知识沉淀"
+    ],
+    "auto": {
+      "idle_hours": 4,
+      "random_check": true,
+      "min_interval_hours": 24,
+      "description": "每天自动运行 1 次，或用户空闲 4 小时以上时触发"
+    }
+  },
+  "entry": {
+    "type": "script",
+    "path": "~/.openclaw/skills/",
+    "main": "memory_extraction_engine.py",
+    "command": "python3 memory_extraction_engine.py"
+  },
+  "features": {
+    "analyze_episodes": "分析最近 24 小时的情景记忆",
+    "classify_content": "识别架构决策、工作流程、技能配置、经验教训等类别",
+    "extract_knowledge": "自动提炼高价值内容为知识记忆",
+    "mark_extracted": "标记已提炼的情景记忆，避免重复",
+    "generate_report": "生成提炼报告并保存到 VectorBrain"
+  },
+  "extraction_categories": {
+    "architecture_decision": "架构决策、规范制定、标准定义",
+    "workflow": "工作流程、操作方法、执行步骤",
+    "skill_configuration": "技能配置、Function Calling 相关",
+    "experience": "经验教训、问题解决、错误修复",
+    "system_standard": "系统标准、必定执行的规范"
+  },
+  "report_path": "~/.openclaw/workspace/memory/extraction_report.md",
+  "examples": [
+    "提炼今天的记忆",
+    "分析最近的经验",
+    "提取有价值的对话",
+    "整理情景记忆"
+  ],
+  "notes": [
+    "自动触发：每天运行 1 次或空闲时触发",
+    "避免重复：已提炼的记忆会被标记",
+    "质量保障：建议人工审核提炼结果",
+    "所有数据保存到 VectorBrain 向量数据库"
+  ]
+}

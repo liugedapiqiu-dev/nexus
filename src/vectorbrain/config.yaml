@@ -1,0 +1,48 @@
+# VectorBrain 系统配置
+# ===================
+# 版本：v2.0
+# 更新时间：2026-03-15
+
+# 数据库配置
+database:
+  task_db: ~/.vectorbrain/tasks/task_queue.db
+  episodic_memory_db: ~/.vectorbrain/memory/episodic_memory.db
+  knowledge_memory_db: ~/.vectorbrain/memory/knowledge_memory.db
+  reflection_db: ~/.vectorbrain/reflection/reflections.db
+
+# DAG 调度器配置
+dag:
+  log_dir: ~/.vectorbrain/dag/logs
+  scheduler_interval: 1.0          # 轮询间隔（秒）
+  max_workers: 4                   # 最大并发 Worker 数
+  task_timeout: 30                 # 任务超时（分钟）
+  max_retries: 3                   # 最大重试次数
+  api_port: 9000                   # API 服务器端口
+  api_host: 127.0.0.1              # API 服务器地址
+
+# 记忆系统配置
+memory:
+  episodic_db: ~/.vectorbrain/memory/episodic_memory.db
+  knowledge_db: ~/.vectorbrain/memory/knowledge_memory.db
+  vector_size: 1024                # 向量维度
+  index_type: faiss                # 向量索引类型
+
+# 反思系统配置
+reflection:
+  db: ~/.vectorbrain/reflection/reflections.db
+  auto_reflect: true               # 自动反思
+  reflect_schedule: "0 12,17 * * *"  # 每天 12:00 和 17:00
+
+# 日志配置
+logging:
+  level: INFO
+  format: "%(asctime)s [%(levelname)s] %(message)s"
+  max_size_mb: 100
+  backup_count: 5
+
+# 系统配置
+system:
+  name: VectorBrain
+  version: 2.0
+  author: Ahao
+  description: AI Agent Operating System

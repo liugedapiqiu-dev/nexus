@@ -1,0 +1,47 @@
+{
+  "name": "startup-healthcheck",
+  "description": "OpenClaw 启动自检 - 自动汇报 VectorBrain 状态/记忆系统/网关状态",
+  "version": "1.0.0",
+  "author": "OpenClaw Community",
+  "updated": "2026-03-10",
+  "triggers": {
+    "intent": [
+      "启动自检",
+      "系统状态",
+      "健康检查",
+      "VectorBrain 状态",
+      "网关状态",
+      "记忆系统检查",
+      "开机自检"
+    ]
+  },
+  "entry": {
+    "type": "script",
+    "path": "~/.openclaw/skills/startup-healthcheck/",
+    "main": "healthcheck.sh"
+  },
+  "checklist": {
+    "vectorbrain": "检查 VectorBrain 数据库连接",
+    "memory_system": "检查记忆系统状态",
+    "gateway": "检查 OpenClaw Gateway 状态",
+    "skills": "检查已安装技能",
+    "configuration": "验证配置文件完整性"
+  },
+  "output": {
+    "format": "markdown",
+    "sections": [
+      "VectorBrain 状态",
+      "记忆系统统计",
+      "网关连接状态",
+      "技能清单",
+      "配置完整性",
+      "问题建议"
+    ]
+  },
+  "examples": [
+    "进行启动自检",
+    "检查系统状态",
+    "VectorBrain 是否正常",
+    "网关连接情况如何"
+  ]
+}

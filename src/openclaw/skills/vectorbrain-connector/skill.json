@@ -1,0 +1,47 @@
+{
+  "name": "vectorbrain-connector",
+  "description": "VectorBrain 大脑连接器 - 读取记忆/执行规划/写入反思",
+  "version": "1.0.0",
+  "author": "OpenClaw Community",
+  "updated": "2026-03-10",
+  "triggers": {
+    "intent": [
+      "读取记忆",
+      "搜索记忆",
+      "写入反思",
+      "执行规划",
+      "VectorBrain 操作",
+      "记忆检索",
+      "经验查询"
+    ]
+  },
+  "entry": {
+    "type": "script",
+    "path": "~/.vectorbrain/connector/",
+    "scripts": {
+      "vector_search": "python3 vector_search.py \"{query}\"",
+      "memory_read": "python3 memory_reader.py --type {episodic|knowledge}",
+      "reflection_write": "python3 reflection_writer.py --content \"{text}\"",
+      "task_plan": "python3 task_planner.py --goal \"{goal}\""
+    }
+  },
+  "databases": {
+    "episodic_memory": "~/.vectorbrain/memory/episodic_memory.db",
+    "knowledge_memory": "~/.vectorbrain/memory/knowledge_memory.db",
+    "reflections": "~/.vectorbrain/reflection/reflections.db",
+    "tasks": "~/.vectorbrain/tasks/task_queue.db",
+    "goals": "~/.vectorbrain/goals/goals.db"
+  },
+  "operations": {
+    "read": "从数据库检索记忆",
+    "write": "写入新的记忆或反思",
+    "search": "向量相似度搜索",
+    "plan": "基于目标生成任务计划"
+  },
+  "examples": [
+    "搜索关于 Excel 处理的经验",
+    "读取昨天的对话记忆",
+    "记录这次错误到反思",
+    "查找类似的解决方案"
+  ]
+}

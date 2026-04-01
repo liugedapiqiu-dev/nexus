@@ -1,0 +1,10 @@
+{
+  "app_name": "work-memory-hub",
+  "memory_root": "~/.vectorbrain/memory",
+  "connector_root": "~/.vectorbrain/connector",
+  "monitor_root": "~/.vectorbrain/monitor_center",
+  "runtime_root": "~/.vectorbrain/work-memory-hub/runtime",
+  "log_file": "~/.vectorbrain/work-memory-hub/logs/app.log",
+  "mode": "scaffold",
+  "notes": "safe placeholder config; copy to local config when enabling real workflows"
+}

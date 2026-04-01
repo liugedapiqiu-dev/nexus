@@ -1,0 +1,39 @@
+{
+  "_comment": "用户身份映射配置 - 将所有标识符映射到主会话",
+  "_updated": "2026-03-05 16:30",
+  "_desc": "解决 OpenClaw 按渠道创建会话导致的重复问题",
+  
+  "primary_user": {
+    "name": "[YOUR_NAME]",
+    "primary_chat_id": "oc_2dccb0297692e3454370486f82e87bb1",
+    "aliases": {
+      "user_id": "e2a18g78",
+      "open_id": "ou_cd2f520717fd4035c6ef3db89a53b748",
+      "union_id": "on_642304df642d50f5cfed1a1e9f1dcb58"
+    }
+  },
+  
+  "routing_rules": [
+    {
+      "rule": "feishu_direct_message",
+      "match": {
+        "channel": "feishu",
+        "type": "p2p"
+      },
+      "action": "route_to_primary",
+      "target_session": "feishu:default:oc_2dccb0297692e3454370486f82e87bb1"
+    },
+    {
+      "rule": "feishu_user_alias",
+      "match_any_user_id": ["e2a18g78", "ou_cd2f520717fd4035c6ef3db89a53b748"],
+      "action": "merge_to_primary",
+      "target_session": "feishu:default:oc_2dccb0297692e3454370486f82e87bb1"
+    }
+  ],
+  
+  "cleanup_policy": {
+    "auto_merge": true,
+    "auto_delete_duplicates": true,
+    "preserve_session": "feishu:default:oc_2dccb0297692e3454370486f82e87bb1"
+  }
+}

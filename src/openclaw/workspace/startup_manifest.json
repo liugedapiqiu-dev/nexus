@@ -1,0 +1,26 @@
+{
+  "version": 1,
+  "timezone": "Asia/Shanghai",
+  "required_files": [
+    "~/.openclaw/workspace/AGENTS.md",
+    "~/.openclaw/workspace/SOUL.md",
+    "~/.openclaw/workspace/USER.md",
+    "~/.openclaw/workspace/IDENTITY.md"
+  ],
+  "required_dbs": [
+    "~/.vectorbrain/memory/episodic_memory.db",
+    "~/.vectorbrain/memory/knowledge_memory.db",
+    "~/.vectorbrain/tasks/task_queue.db"
+  ],
+  "required_skills": [
+    "vectorbrain-memory-search",
+    "startup-healthcheck",
+    "session-history-archiver"
+  ],
+  "service_checks": [
+    { "name": "ollama", "kind": "process", "pattern": "ollama" },
+    { "name": "vectorbrain_core", "kind": "process", "pattern": "agent_core_loop.py" },
+    { "name": "vectorbrain_api", "kind": "process", "pattern": "api_server.py" },
+    { "name": "openclaw_gateway_18789", "kind": "port", "port": 18789 }
+  ]
+}

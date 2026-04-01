@@ -1,0 +1,38 @@
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Thumbnails
+._*
+
+# VS Code
+.vscode/
+*.code-workspace
+
+# Node
+node_modules/
+*.log
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+dist/
+build/
+
+# Temporary files
+*.tmp
+*.temp
+*.swp
+*.bak
+
+# Local configs
+.env
+.env.local
+*.local
+
+# Logs
+*.log
+logs/
