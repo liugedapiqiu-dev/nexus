@@ -191,8 +191,8 @@ def resolve_path(path_template, config=None):
 def get_path(key, subkey=None):
     """获取配置路径
     用法:
-        get_path("vectorbrain", "memory")  -> /home/user/.vectorbrain/memory
-        get_path("openclaw", "sessions")    -> /home/user/.openclaw/agents/main/sessions
+        get_path("vectorbrain", "memory")  -> ~/.vectorbrain/memory
+        get_path("openclaw", "sessions")    -> ~/.openclaw/agents/main/sessions
     """
     config = load_nexus_config()
     if config and "paths" in config:

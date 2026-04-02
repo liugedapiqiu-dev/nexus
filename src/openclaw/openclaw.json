@@ -104,7 +104,7 @@
         },
         "custom-api-minimaxi-com/MiniMax-M2.7": {}
       },
-      "workspace": "/home/user/.openclaw/workspace",
+      "workspace": "~/.openclaw/workspace",
       "memorySearch": {
         "enabled": false
       },
@@ -218,7 +218,7 @@
       "feishu": {
         "source": "npm",
         "spec": "@openclaw/feishu@2026.3.7",
-        "installPath": "/home/user/.openclaw/extensions/feishu",
+        "installPath": "~/.openclaw/extensions/feishu",
         "version": "2026.3.7",
         "resolvedName": "@openclaw/feishu",
         "resolvedVersion": "2026.3.7",
@@ -230,8 +230,8 @@
       },
       "vectorbrain": {
         "source": "path",
-        "sourcePath": "/home/user/.openclaw/extensions/vectorbrain",
-        "installPath": "/home/user/.openclaw/extensions/vectorbrain",
+        "sourcePath": "~/.openclaw/extensions/vectorbrain",
+        "installPath": "~/.openclaw/extensions/vectorbrain",
         "version": "1.0.0",
         "installedAt": "2026-03-23T12:00:00+08:00"
       }

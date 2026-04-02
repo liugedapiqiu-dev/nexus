@@ -38,7 +38,6 @@ class OpenClawSkillRegistry:
         home = Path.home()
         return [
             home / ".openclaw" / "workspace" / "skills",
-            Path("/home/user/.openclaw/workspace/skills"),
             home / ".openclaw" / "skills",
             home / ".npm-global" / "lib" / "node_modules" / "openclaw" / "skills",
             home / ".npm-global" / "lib" / "node_modules" / "openclaw" / "extensions",

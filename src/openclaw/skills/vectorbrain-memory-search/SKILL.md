@@ -112,8 +112,8 @@ python3 ~/.vectorbrain/connector/vector_search.py "{查询文本}"
 
 ## 路径边界（本机当前实际规则）
 
-- **工作区内**（`/home/user/.openclaw/workspace`）可直接用 `read` 读取。
-- **工作区外**（如 `/home/user/.openclaw/skills/`、`/home/user/.vectorbrain/`、npm 安装目录）**不要假设 `read` 能直接读到**；应改用 shell/`exec`、技能调用、或框架已暴露的工具。
+- **工作区内**（`~/.openclaw/workspace`）可直接用 `read` 读取。
+- **工作区外**（如 `~/.openclaw/skills/`、`~/.vectorbrain/`、npm 安装目录）**不要假设 `read` 能直接读到**；应改用 shell/`exec`、技能调用、或框架已暴露的工具。
 - 当需要读取当日记忆文件时，本机当前应优先看：`~/.openclaw/workspace/memory/YYYY-MM-DD.md`。
 
 ---

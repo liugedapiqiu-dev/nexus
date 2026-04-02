@@ -6,6 +6,9 @@ const path = require('path');
 const { Tail } = require('tail');
 const { exec, execSync } = require('child_process');
 
+// 动态路径解析
+const HOME = process.env.HOME || process.env.USERPROFILE || '';
+
 const app = express();
 const PORT = 18790;
 
@@ -162,7 +165,8 @@ let queueStats = {
 let activeSessions = {};
 const SESSION_TIMEOUT = 30 * 60 * 1000; // 30 分钟超时
 
-const TASK_DB = '/home/user/.vectorbrain/tasks/task_queue.db';
+const HOME = process.env.HOME || process.env.USERPROFILE || '';
+const TASK_DB = `${HOME}/.vectorbrain/tasks/task_queue.db`;
 
 function execJson(command) {
   try {
@@ -366,7 +370,7 @@ function extractInfoFromLog(logLine) {
 }
 
 // ========== 会话元数据与状态推断 ==========
-const SESSIONS_FILE = '/home/user/.openclaw/agents/main/sessions/sessions.json';
+const SESSIONS_FILE = `${HOME}/.openclaw/agents/main/sessions/sessions.json`;
 
 function safeReadJson(file) {
   try {
@@ -660,7 +664,7 @@ app.get('/api/sessions/:sessionKey/details', (req, res) => {
 // Token 统计 API - 从 sessions.json 读取
 app.get('/api/tokens', (req, res) => {
   try {
-    const sessionsFile = '/home/user/.openclaw/agents/main/sessions/sessions.json';
+    const sessionsFile = `${HOME}/.openclaw/agents/main/sessions/sessions.json`;
     const sessionsData = JSON.parse(fs.readFileSync(sessionsFile, 'utf-8'));
     
     // 解析每个会话的 token 数据
@@ -718,7 +722,7 @@ app.get('/api/tokens', (req, res) => {
 // 完整会话数据 API
 app.get('/api/sessions/full', (req, res) => {
   try {
-    const sessionsFile = '/home/user/.openclaw/agents/main/sessions/sessions.json';
+    const sessionsFile = `${HOME}/.openclaw/agents/main/sessions/sessions.json`;
     const sessionsData = JSON.parse(fs.readFileSync(sessionsFile, 'utf-8'));
     
     const sessions = Object.entries(sessionsData).map(([key, data]) => {
@@ -754,7 +758,7 @@ app.get('/api/sessions/full', (req, res) => {
 // ==========================================
 app.get('/api/stats', (req, res) => {
   try {
-    const sessionsFile = '/home/user/.openclaw/agents/main/sessions/sessions.json';
+    const sessionsFile = `${HOME}/.openclaw/agents/main/sessions/sessions.json`;
     const sessionsData = JSON.parse(fs.readFileSync(sessionsFile, 'utf-8'));
     
     // 获取查询参数中的日期
@@ -863,7 +867,7 @@ app.get('/api/reflection-logs', async (req, res) => {
     
     // 读取自动反思日志
     try {
-      const reflectionLog = fs.readFileSync('/home/user/.openclaw/logs/auto_reflection.log', 'utf8');
+      const reflectionLog = fs.readFileSync(`${HOME}/.openclaw/logs/auto_reflection.log`, 'utf8');
       const todayLines = reflectionLog.split('\n').filter(line => line.includes(today));
       if (todayLines.length > 0) {
         result.reflection.lastRun = '今天';
@@ -874,7 +878,7 @@ app.get('/api/reflection-logs', async (req, res) => {
     
     // 读取记忆提取日志
     try {
-      const extractionLog = fs.readFileSync('/home/user/.openclaw/logs/memory_extraction.log', 'utf8');
+      const extractionLog = fs.readFileSync(`${HOME}/.openclaw/logs/memory_extraction.log`, 'utf8');
       const todayLines = extractionLog.split('\n').filter(line => line.includes(today));
       if (todayLines.length > 0) {
         result.extraction.lastRun = '今天';
@@ -885,7 +889,7 @@ app.get('/api/reflection-logs', async (req, res) => {
     
     // 读取大脑健康日志
     try {
-      const healthLog = fs.readFileSync('/home/user/.openclaw/logs/brain_health.log', 'utf8');
+      const healthLog = fs.readFileSync(`${HOME}/.openclaw/logs/brain_health.log`, 'utf8');
       const todayLines = healthLog.split('\n').filter(line => line.includes(today));
       if (todayLines.length > 0) {
         result.brainHealth.lastRun = '今天';

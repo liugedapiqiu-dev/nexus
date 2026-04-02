@@ -18,7 +18,7 @@ from pathlib import Path
 from typing import Dict, List
 
 VECTORBRAIN_ROOT = Path.home() / '.vectorbrain'
-WORKSPACE = Path('/home/user/.openclaw/workspace')
+WORKSPACE = Path.home() / '.openclaw' / 'workspace'
 HABIT_DB = VECTORBRAIN_ROOT / 'memory' / 'habit_memory.db'
 
 

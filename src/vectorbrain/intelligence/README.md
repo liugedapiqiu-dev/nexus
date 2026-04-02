@@ -47,8 +47,8 @@
 - **功能**: 抓取所有群的新消息，保存到数据库
 
 ### 日志文件
-- **位置**: `/home/user/.vectorbrain/chat_scraper.log`
-- **状态**: `/home/user/.vectorbrain/chat_scraper_state.json`
+- **位置**: `~/.vectorbrain/chat_scraper.log`
+- **状态**: `~/.vectorbrain/chat_scraper_state.json`
 
 ## 查询方式
 

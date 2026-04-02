@@ -27,7 +27,7 @@ VHOME = Path.home() / ".vectorbrain"
 STATE_FILE = VHOME / "maintenance" / "auto_fixer_state.json"
 STATUS_FILE = VHOME / "monitor_center" / "status.json"
 LOG_FILE = VHOME / "logs" / "auto_fixer.log"
-OPENCLAW_BIN = "/home/user/.npm-global/bin" / "openclaw"
+OPENCLAW_BIN = Path.home() / ".npm-global" / "bin" / "openclaw"
 NOTIFY_HELPER = VHOME / "common" / "notify_helper.py"
 
 UTC = timezone.utc
@@ -112,7 +112,8 @@ def call_openclaw_agent(task_description: str, timeout: int = 180) -> tuple[bool
     ]
 
     env = dict(os.environ)
-    env["PATH"] = f"/usr/local/bin:/opt/homebrew/bin:/home/user/.npm-global/bin:{env.get('PATH', '')}"
+    npm_global = str(Path.home() / ".npm-global" / "bin")
+    env["PATH"] = f"/usr/local/bin:/opt/homebrew/bin:{npm_global}:{env.get('PATH', '')}"
 
     try:
         result = subprocess.run(
