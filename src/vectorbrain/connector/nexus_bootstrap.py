@@ -20,6 +20,14 @@ from nexus_config import (
     load_nexus_config, create_nexus_config, get_path
 )
 
+# 导入数据库初始化函数
+try:
+    from memory.episodic_db import init_episodic_db
+    from memory.knowledge_db import init_knowledge_db
+    DB_INIT_AVAILABLE = True
+except ImportError:
+    DB_INIT_AVAILABLE = False
+
 
 def check_ollama_service():
     """检查 Ollama 服务是否运行"""
@@ -137,6 +145,7 @@ def init_memory_databases():
     ensure_directory(memory_dir)
     ensure_directory(tasks_dir)
 
+    # 创建数据库占位文件（如果不存在）
     db_files = [
         "episodic_memory.db",
         "knowledge_memory.db",
@@ -157,6 +166,23 @@ def init_memory_databases():
     if not task_db.exists():
         task_db.touch()
         print(f"  Created: task_queue.db")
+
+    # 初始化数据库表结构
+    if DB_INIT_AVAILABLE:
+        print("\n  初始化数据库表结构...")
+        try:
+            init_episodic_db()
+            print("  ✅ episodic_memory 表结构已创建")
+        except Exception as e:
+            print(f"  ⚠️ episodic_memory 初始化失败: {e}")
+
+        try:
+            init_knowledge_db()
+            print("  ✅ knowledge_memory 表结构已创建")
+        except Exception as e:
+            print(f"  ⚠️ knowledge_memory 初始化失败: {e}")
+    else:
+        print("  ⚠️ 数据库初始化模块不可用，将在首次写入时自动创建")
 
     print("  记忆数据库初始化完成")
     return True
