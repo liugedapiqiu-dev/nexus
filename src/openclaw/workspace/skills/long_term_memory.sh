@@ -2,14 +2,15 @@
 # name: long_term_memory
 # description: 访问长期记忆检索入口（当前以 VectorBrain 检索为准）
 # version: 2.0.0
-# author: 健豪 + Nexus
+# author: Nexus
 # usage: 支持 search/find/lookup/status/help；旧 add/list/stats 已废弃
 
 set -euo pipefail
 
 PYTHON_BIN="${PYTHON_BIN:-python3}"
-VECTOR_SEARCH_SCRIPT="/home/user/.vectorbrain/connector/vector_search.py"
-LEGACY_MEMORY_SCRIPT="/home/user/.openclaw/memory/autonomous/memory_cli.py"
+HOME_DIR="${HOME:-}"
+VECTOR_SEARCH_SCRIPT="${HOME_DIR}/.vectorbrain/connector/vector_search.py"
+LEGACY_MEMORY_SCRIPT="${HOME_DIR}/.openclaw/memory/autonomous/memory_cli.py"
 
 ACTION="${1:-help}"
 if [ $# -gt 0 ]; then
@@ -40,8 +41,8 @@ case "$ACTION" in
     else
       echo "- 旧自主记忆 CLI：未发现"
     fi
-    echo "- 知识记忆 DB：/home/user/.vectorbrain/memory/knowledge_memory.db"
-    echo "- 情景记忆 DB：/home/user/.vectorbrain/memory/episodic_memory.db"
+    echo "- 知识记忆 DB：~/.vectorbrain/memory/knowledge_memory.db"
+    echo "- 情景记忆 DB：~/.vectorbrain/memory/episodic_memory.db"
     ;;
 
   add|list|ls|all)
@@ -49,7 +50,7 @@ case "$ACTION" in
     echo "原因：默认长期记忆体系已切换到 VectorBrain（~/.vectorbrain/），不再写入 ~/.openclaw/memory/autonomous/ 旧路径。"
     echo "建议："
     echo "- 检索：long_term_memory search \"你的问题\""
-    echo "- 导入文件知识：使用 /home/user/.vectorbrain/connector/import_information_files.py <dir>"
+    echo "- 导入文件知识：使用 ~/.vectorbrain/connector/import_information_files.py <dir>"
     exit 2
     ;;
 

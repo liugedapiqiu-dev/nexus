@@ -27,8 +27,8 @@ EPISODIC_DB = DB_DIR / "episodic_memory.db"
 ALERT_LOG = INTELLIGENCE_DIR / "alerts.log"
 ALERT_STATE = INTELLIGENCE_DIR / "alert_state.json"
 
-# 用户 ID（健豪）
-USER_ID = "ou_cd2f520717fd4035c6ef3db89a53b748"
+# 用户 ID
+USER_ID = "[YOUR_USER_ID]"
 
 # ========== 关键词库 ==========
 

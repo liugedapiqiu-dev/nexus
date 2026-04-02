@@ -2,14 +2,15 @@
 # name: import_knowledge_base
 # description: 批量导入高价值文件知识到 VectorBrain information memory
 # version: 2.0.0
-# author: 健豪 + Nexus
+# author: Nexus
 
 set -euo pipefail
 
 PYTHON_BIN="${PYTHON_BIN:-python3}"
-IMPORT_SCRIPT="/home/user/.vectorbrain/connector/import_information_files.py"
-WORKSPACE_DIR="/home/user/.openclaw/workspace"
-VECTORBRAIN_MEMORY_DIR="/home/user/.vectorbrain/memory"
+HOME_DIR="${HOME:-}"
+IMPORT_SCRIPT="${HOME_DIR}/.vectorbrain/connector/import_information_files.py"
+WORKSPACE_DIR="${HOME_DIR}/.openclaw/workspace"
+VECTORBRAIN_MEMORY_DIR="${HOME_DIR}/.vectorbrain/memory"
 
 TARGET_DIR="${1:-$WORKSPACE_DIR}"
 

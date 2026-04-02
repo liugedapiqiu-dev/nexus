@@ -79,7 +79,7 @@ def send_feishu_alert(title, description, suggested_action):
 
     send_ok, send_detail = send_feishu_message(
         msg_content,
-        target="user:ou_cd2f520717fd4035c6ef3db89a53b748",
+        target="user:[YOUR_USER_ID]",
         timeout=60,
         script="opportunity_radar",
     )

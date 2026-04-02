@@ -21,12 +21,10 @@ EPISODIC_DB = DB_DIR / "episodic_memory.db"
 KNOWLEDGE_DB = DB_DIR / "knowledge_memory.db"
 
 # 群名称映射
+# 请在 .env 或配置中配置你的飞书群 ID
 CHAT_NAMES = {
-    "oc_9e6a7b5eab816dd3e081ddd1d4eb1565": "蜘蛛侠 Switch 设计沟通",
-    "oc_6cb875b970150d9c71de17a154fbf893": "采购信息同步",
-    "oc_07dbdcf4d5629024553e21bf485d0012": "醇龙箱包对接",
-    "oc_cf8548f2c08dc91ec02a71e99498e744": "监督虾",
-    "oc_4f9a5f0e671b6181048ed2964338545b": "agent",
+    "[YOUR_GROUP_ID_1]": "群组名称1",
+    "[YOUR_GROUP_ID_2]": "群组名称2",
 }
 
 # 重要关键词分类

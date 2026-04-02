@@ -19,7 +19,7 @@ This skill provides full CRUD operations for:
 
 **Required Environment Variables** (in `.secrets.env`):
 ```bash
-FEISHU_APP_ID=cli_a9f52a4ed7b8ded4
+FEISHU_APP_ID=[YOUR_FEISHU_APP_ID]
 FEISHU_APP_SECRET=<your-app-secret>
 ```
 
@@ -222,7 +222,7 @@ Ensure your Lark app has these scopes:
 - `contact:user.employee_id:readonly` — Read user info ✅ (already enabled)
 
 **To add permissions:**
-1. Go to [Lark Open Platform](https://open.larksuite.com/app/cli_a9f52a4ed7b8ded4/auth)
+1. Go to [Lark Open Platform](https://open.larksuite.com/app/[YOUR_APP_ID]/auth)
 2. Add scopes: `task:task:write`, `contact:contact:readonly` (for dynamic employee lookup)
 3. Re-publish the app version
 

@@ -73,7 +73,7 @@ PROBLEM_KEYWORDS = [
 # 飞书配置
 FEISHU_CONFIG = {
     'webhook': None,  # 从配置文件读取
-    'target_user': 'ou_cd2f520717fd4035c6ef3db89a53b748'  # [YOUR_NAME]
+    'target_user': '[YOUR_USER_ID]'  # [YOUR_NAME]
 }
 
 
@@ -428,7 +428,7 @@ class SunTzuReflectionEngine:
         result = notify_feishu_and_queue(
             summary,
             notification=notification,
-            target="user:ou_cd2f520717fd4035c6ef3db89a53b748",
+            target="user:[YOUR_USER_ID]",
             timeout=60,
             script="sun_tzu_auto_reflection",
         )

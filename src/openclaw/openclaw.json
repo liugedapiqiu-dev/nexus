@@ -157,20 +157,20 @@
   "channels": {
     "feishu": {
       "enabled": true,
-      "appId": "cli_a9b65317fc79dbc4",
+      "appId": "[YOUR_FEISHU_APP_ID]",
       "appSecret": "[YOUR_APP_SECRET_HERE]",
       "connectionMode": "websocket",
       "domain": "feishu",
       "groupPolicy": "allowlist",
       "groupAllowFrom": [
-        "ou_cd2f520717fd4035c6ef3db89a53b748"
+        "[YOUR_USER_ID]"
       ],
       "dmPolicy": "open",
       "allowFrom": [
         "*"
       ],
       "groups": {
-        "oc_4f9a5f0e671b6181048ed2964338545b": {
+        "[YOUR_GROUP_ID]": {
           "requireMention": false
         }
       }

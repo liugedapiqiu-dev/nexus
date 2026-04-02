@@ -33,7 +33,7 @@ CHECK_URLS = [
 ]
 
 # 飞书用户 ID
-FEISHU_USER_ID = "ou_cd2f520717fd4035c6ef3db89a53b748"
+FEISHU_USER_ID = "[YOUR_USER_ID]"
 
 def log(message):
     """记录日志"""

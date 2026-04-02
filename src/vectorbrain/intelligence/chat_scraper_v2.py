@@ -48,26 +48,19 @@ STATE_FILE = VECTORBRAIN_HOME / "chat_scraper_state.json"
 EVENT_LOG_FILE = VECTORBRAIN_HOME / "chat_scraper_log.jsonl"
 LOCK_FILE = VECTORBRAIN_HOME / "chat_scraper.lock"
 
-# 监控的群列表（兼容旧配置：作为“名称兜底/白名单”使用）
+# 监控的群列表（兼容旧配置：作为”名称兜底/白名单”使用）
 # 现在默认会动态枚举机器人可见的全部群聊（im.v1.chat.list），然后用该表补齐更友好的群名称。
+# 请在 .env 中配置你的飞书群 ID
 MONITORED_CHATS = {
-    "oc_9e6a7b5eab816dd3e081ddd1d4eb1565": "蜘蛛侠 Switch 设计沟通",
-    "oc_6cb875b970150d9c71de17a154fbf893": "采购信息同步",
-    "oc_07dbdcf4d5629024553e21bf485d0012": "醇龙箱包对接",
-    "oc_cf8548f2c08dc91ec02a71e99498e744": "监督虾",
-    "oc_4f9a5f0e671b6181048ed2964338545b": "agent",
+    “[YOUR_GROUP_ID_1]”: “群组名称1”,
+    “[YOUR_GROUP_ID_2]”: “群组名称2”,
 }
 
 # 用户 ID 到名称的映射
+# 请在 .env 或配置中配置你的用户 ID
 USER_NAMES = {
-    "ou_cd2f520717fd4035c6ef3db89a53b748": "[YOUR_NAME]",
-    "ou_d37bcc4a4c19f460aecd41d9fde760ba": "黄宗旨",
-    "ou_42b5220858a0255fb79474c0568f46ee": "许瑶",
-    "ou_9d9f47fa380aa29a4d96e17d2322c08b": "周凡",
-    "ou_3b0d48a4e167ab0782a0f144bdb0568f": "张新",
-    "ou_6e3402e1d65267de55bce6c2839284e1": "Emeng",
-    "ou_cf6c6b3f5f33694abdd9ea755a953503": "易灵",
-    "ou_db2ce1dc0712bef63febde15d5fc336b": "陈亮亮",
+    “[YOUR_USER_ID]”: “[YOUR_NAME]”,
+}
 }
 
 # ========== 数据库初始化 ==========
