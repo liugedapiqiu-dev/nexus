@@ -259,7 +259,7 @@ def core_process_message(user_input):
 ## 📝 学习记录
 
 **时间线：**
-- 14:13 - 健豪介绍 Gemini 老师
+- 14:13 - 用户介绍 Gemini 老师
 - 14:15 - [YOUR_AI_NAME]做自我介绍
 - 14:20 - Gemini 老师给出详细调教方案
 - 14:25 - Jo 老师强调"全局性"和"刻在 DNA 里"

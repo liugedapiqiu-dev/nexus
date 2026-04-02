@@ -48,7 +48,7 @@ tail -f ~/.vectorbrain/agent_core.log
 ## 集成架构
 
 ```
-健豪 (指挥官)
+[USER] (指挥官)
   ↓
 VectorBrain (大脑) - 思考/规划/反思/记忆
   ↓
